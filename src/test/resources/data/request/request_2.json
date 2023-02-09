@@ -1,0 +1,27 @@
+{
+  "customers": [
+    {
+      "name":
+      "Billy Kidd",
+      "age": 36
+    },
+    {
+      "name": "Zoe Daniels",
+      "age": 3
+    },
+    {
+      "Name":
+      "George White",
+      "Age": 8
+    },
+    {
+      "name":
+      "Tommy Anderson",
+      "age": 9
+    },
+    {
+      "name": "Joe Smith",
+      "age": 17
+    }
+  ]
+}

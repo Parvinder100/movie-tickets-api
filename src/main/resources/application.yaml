@@ -6,6 +6,7 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
 
   h2:
     console.enabled: true
@@ -17,5 +18,7 @@ ticket:
       child: 5
       discount:
         senior: 30
-jwt:
-    header: SDDD
+    discount:
+      children:
+        minimumChildCount: 3
+        discount: 0.25

@@ -1,25 +1,23 @@
 package com.github.my.movie.tickets.discount;
 
-import com.github.my.movie.tickets.dto.Ticket;
 import com.github.my.movie.tickets.dto.TicketCart;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class DiscountProcessor {
-
-    private DiscountHandler discountHandler;
-
+    private DiscountHandler firstDiscountHandler;
+    private DiscountHandler lastDiscountHandler;
     public void applyDiscount(TicketCart ticketCart) {
-        discountHandler.applyDiscount(ticketCart);
+        firstDiscountHandler.applyDiscount(ticketCart);
     }
 
     public void addHandler(DiscountHandler discountHandler) {
-        if (this.discountHandler == null) {
-            this.discountHandler = discountHandler;
+        if (this.firstDiscountHandler == null) {
+            this.firstDiscountHandler = discountHandler;
+            this.lastDiscountHandler = discountHandler;
         } else {
-            discountHandler.setNextHandler(discountHandler);
+            lastDiscountHandler.setNextHandler(discountHandler);
+            lastDiscountHandler = discountHandler;
         }
     }
 }

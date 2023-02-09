@@ -2,8 +2,6 @@ package com.github.my.movie.tickets.integration;
 
 import com.github.my.movie.tickets.dto.TransactionRequest;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.text.StringEscapeUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -15,15 +13,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.util.StreamUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
@@ -50,10 +44,11 @@ public class MovieTicketsIntegratoinTest {
     }
 
     @Test
-    public void testGetMovieCoste_scenario_1() throws IOException {
+    public void testGetMovieCoste_scenario_1() throws IOException, InterruptedException {
         TransactionRequest transactionRequest = prepareTransactionRequest("data/request/request_1.json");
         ResponseEntity<String> stringResponseEntity = this.restTemplate.postForEntity(url + "/getMovieCost", transactionRequest, String.class);
         String expectedJsonResponse = getJsonStringFromFile("data/response/response_1.json");
+        //Thread.sleep(25000);
         Assert.assertEquals(expectedJsonResponse, stringResponseEntity.getBody());
     }
 

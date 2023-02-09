@@ -1,6 +1,5 @@
-package com.github.my.movie.tickets.dto;
+package com.github.my.movie.tickets.controller;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -10,7 +9,7 @@ import java.text.DecimalFormat;
 
 public class CustomFloatSerializer extends JsonSerializer<Float> {
     @Override
-    public void serialize(Float value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonGenerationException {
+    public void serialize(Float value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
         if (null == value) {
             jgen.writeNull();
         } else {

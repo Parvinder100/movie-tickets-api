@@ -1,12 +1,9 @@
 package com.github.my.movie.tickets.discount;
 
-import com.github.my.movie.tickets.dto.Ticket;
 import com.github.my.movie.tickets.dto.TicketCart;
 
-import java.util.List;
-
 public abstract class DiscountHandler {
-    private DiscountHandler nextDiscountHandler;
+    protected DiscountHandler nextDiscountHandler;
 
     public abstract void applyDiscount(TicketCart ticketCart);
 

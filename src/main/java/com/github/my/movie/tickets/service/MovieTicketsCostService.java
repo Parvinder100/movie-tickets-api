@@ -20,7 +20,6 @@ import java.util.List;
 
 @Service
 public class MovieTicketsCostService {
-    private int transactionId = 1;
     @Autowired
     private TicketFactory ticketFactory;
     @Autowired

@@ -21,13 +21,13 @@ public class TicketFactory {
     private static Map<TicketType, Ticket> ticketMap = new HashMap<>();
 
     public Ticket createTicket(TransactionRequest.Customer customer) {
-        if (customer.getAge() > 65) {
+        if (customer.getAge() >= 65) {
             return fetchTicket(TicketType.Senior, () -> {return adultTicketPrice * (100-seniorTicketDiscount)/100;});
         }
-        if (customer.getAge() > 18) {
+        if (customer.getAge() >= 18) {
             return fetchTicket(TicketType.Adult, () -> {return adultTicketPrice;});
         }
-        if (customer.getAge() > 11) {
+        if (customer.getAge() >= 11) {
             return fetchTicket(TicketType.Teen, () -> {return teenTicketPrice;});
         }
         return fetchTicket(TicketType.Children, () -> {return childTicketPrice;});

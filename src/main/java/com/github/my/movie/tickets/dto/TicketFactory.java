@@ -36,9 +36,7 @@ public class TicketFactory {
     private static Ticket fetchTicket(TicketType ticketType, Supplier<Float> priceSupplier) {
         Ticket ticket = ticketMap.get(ticketType);
         if (ticket == null) {
-            ticket = Ticket.builder().ticketType(ticketType)
-                    .totalCost(priceSupplier.get())
-                    .build();
+            ticket = Ticket.builder().ticketType(ticketType).totalCost(priceSupplier.get()).build();
             ticketMap.put(ticketType, ticket);
         }
         return ticket;

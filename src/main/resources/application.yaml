@@ -21,4 +21,9 @@ ticket:
     discount:
       children:
         minimumChildCount: 3
-        discount: 0.25
+        discount: 25
+logging:
+  level:
+    root: INFO
+
+

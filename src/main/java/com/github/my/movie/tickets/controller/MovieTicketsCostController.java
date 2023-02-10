@@ -14,13 +14,11 @@ public class MovieTicketsCostController {
     @Autowired
     private MovieTicketsCostService movieTicketsCostService;
 
-    /**
-     */
     @PostMapping("/getMovieCost")
     public TicketCart getMovieCost(@RequestBody TransactionRequest transactionRequest) {
 
         TicketCart transactionResponse = movieTicketsCostService.getTicketCost(transactionRequest.getCustomers());
-        log.info("Request for a suburb for a postcode=");
+        log.info("Sending response for movie ticket cost request.  transactionResponse=" + transactionResponse);
         return transactionResponse;
     }
 }

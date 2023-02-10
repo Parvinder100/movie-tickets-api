@@ -13,6 +13,7 @@ import com.github.my.movie.tickets.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,15 +41,18 @@ public class MovieTicketsCostService {
 
         discountProcessor.applyDiscount(ticketCart);
 
-        // update the final total after applying discounts
+        //update the final total after applying discounts
         ticketCart.updateTotalCostOfTicketCart();
 
-        TicketCartEntity ticketCartEntity = persistEntity(ticketCart);
-        ticketCart.setTransactionId(ticketCartEntity.getId());
+        if (!ObjectUtils.isEmpty(ticketCart.getTickets())) {
+            //Storing the ticket cart in db. Entity id is used as transaction id.
+            TicketCartEntity ticketCartEntity = saveTicketCart(ticketCart);
+            ticketCart.setTransactionId(ticketCartEntity.getId());
+        }
         return ticketCart;
     }
 
-    private TicketCartEntity persistEntity(TicketCart ticketCart) {
+    private TicketCartEntity saveTicketCart(TicketCart ticketCart) {
         TicketCartEntity ticketCartEntity = TicketCartEntity.builder().totalCost(ticketCart.getTotalCost()).build();
         List<TicketEntity> ticketEntityList = new ArrayList<>();
         for (Ticket ticket : ticketCart.getTickets()) {
@@ -66,6 +70,5 @@ public class MovieTicketsCostService {
     public void addDiscountProcessor() {
         //Add Children ticket discount
         discountProcessor.addHandler(discountHandlerFactory.getChildrenTicketDiscountHandler());
-        //discountProcessor.addHandler(new AdultTicketDiscountHandler());
     }
 }

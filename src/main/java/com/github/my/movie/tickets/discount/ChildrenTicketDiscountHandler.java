@@ -21,7 +21,7 @@ public class ChildrenTicketDiscountHandler extends DiscountHandler {
         if (ticketOptional.isPresent()) {
             Ticket ticket = ticketOptional.get();
             if (ticket.getQuantity() >= minimumChildCount) {
-                ticket.setTotalCost(ticket.getTotalCost() * (1 - discount));
+                ticket.setTotalCost(ticket.getTotalCost() * (100 - discount) / 100);
             }
         }
         if (hasNext()) {

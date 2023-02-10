@@ -10,7 +10,7 @@ import com.github.my.movie.tickets.entity.TicketCartEntity;
 import com.github.my.movie.tickets.enums.TicketType;
 import com.github.my.movie.tickets.repository.TicketCartRepository;
 import com.github.my.movie.tickets.repository.TicketRepository;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -49,18 +49,18 @@ public class MovieTicketsCostServiceTest {
         when(ticketCartRepository.save(any(TicketCartEntity.class))).thenReturn(TicketCartEntity.builder().id(2).build());
 
         TicketCart ticketCart = movieTicketsCostService.getTicketCost(customerList);
-        Assert.assertEquals(1, ticketCart.getTickets().size());
-        Assert.assertEquals(2, ticketCart.getTransactionId());
-        Assert.assertEquals(TicketType.Children, ticketCart.getTickets().stream().findFirst().get().getTicketType());
-        Assert.assertEquals(2, ticketCart.getTickets().stream().findFirst().get().getQuantity());
-        Assert.assertEquals(40, ticketCart.getTickets().stream().findFirst().get().getTotalCost(), 0.0f);
+        Assertions.assertEquals(1, ticketCart.getTickets().size());
+        Assertions.assertEquals(2, ticketCart.getTransactionId());
+        Assertions.assertEquals(TicketType.Children, ticketCart.getTickets().stream().findFirst().get().getTicketType());
+        Assertions.assertEquals(2, ticketCart.getTickets().stream().findFirst().get().getQuantity());
+        Assertions.assertEquals(40, ticketCart.getTickets().stream().findFirst().get().getTotalCost(), 0.0f);
     }
 
     @Test
     public void testGetTicketCost_whenEmptyCustomerList_returnAValidTicketCart() {
         List<TransactionRequest.Customer> customerList = new ArrayList<>();
         TicketCart ticketCart = movieTicketsCostService.getTicketCost(customerList);
-        Assert.assertEquals(0, ticketCart.getTickets().size());
-        Assert.assertEquals(0, ticketCart.getTotalCost(), 0.0f);
+        Assertions.assertEquals(0, ticketCart.getTickets().size());
+        Assertions.assertEquals(0, ticketCart.getTotalCost(), 0.0f);
     }
 }

@@ -1,7 +1,7 @@
 package com.github.my.movie.tickets.discount;
 
 import com.github.my.movie.tickets.dto.TicketCart;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -20,10 +20,10 @@ public class DiscountProcessorTest {
         DiscountHandler firstDiscountHandler = (DiscountHandler)ReflectionTestUtils.getField(discountProcessor, "firstDiscountHandler");
         DiscountHandler lastDiscountHandler = (DiscountHandler)ReflectionTestUtils.getField(discountProcessor, "lastDiscountHandler");
 
-        Assert.assertEquals(oneDiscountHandler, firstDiscountHandler);
-        Assert.assertEquals(secondDiscountHandler, firstDiscountHandler.nextDiscountHandler);
-        Assert.assertEquals(threeDiscountHandler, firstDiscountHandler.nextDiscountHandler.nextDiscountHandler);
-        Assert.assertEquals(threeDiscountHandler, lastDiscountHandler);
+        Assertions.assertEquals(oneDiscountHandler, firstDiscountHandler);
+        Assertions.assertEquals(secondDiscountHandler, firstDiscountHandler.nextDiscountHandler);
+        Assertions.assertEquals(threeDiscountHandler, firstDiscountHandler.nextDiscountHandler.nextDiscountHandler);
+        Assertions.assertEquals(threeDiscountHandler, lastDiscountHandler);
     }
 
     @Test
@@ -34,9 +34,9 @@ public class DiscountProcessorTest {
         DiscountHandler firstDiscountHandler = (DiscountHandler)ReflectionTestUtils.getField(discountProcessor, "firstDiscountHandler");
         DiscountHandler lastDiscountHandler = (DiscountHandler)ReflectionTestUtils.getField(discountProcessor, "lastDiscountHandler");
 
-        Assert.assertEquals(oneDiscountHandler, firstDiscountHandler);
-        Assert.assertEquals(null, firstDiscountHandler.nextDiscountHandler);;
-        Assert.assertEquals(oneDiscountHandler, lastDiscountHandler);
+        Assertions.assertEquals(oneDiscountHandler, firstDiscountHandler);
+        Assertions.assertEquals(null, firstDiscountHandler.nextDiscountHandler);;
+        Assertions.assertEquals(oneDiscountHandler, lastDiscountHandler);
     }
 
     private static DiscountHandler createHandler() {

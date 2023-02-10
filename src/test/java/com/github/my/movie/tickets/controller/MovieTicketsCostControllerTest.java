@@ -3,7 +3,7 @@ package com.github.my.movie.tickets.controller;
 import com.github.my.movie.tickets.dto.TicketCart;
 import com.github.my.movie.tickets.dto.TransactionRequest;
 import com.github.my.movie.tickets.service.MovieTicketsCostService;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,6 +35,6 @@ public class MovieTicketsCostControllerTest {
 
         TicketCart ticketCart = movieTicketsCostController.getMovieCost(transactionRequest);
 
-        Assert.assertEquals(expectedTicketCart, ticketCart);
+        Assertions.assertEquals(expectedTicketCart, ticketCart);
     }
 }

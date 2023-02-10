@@ -3,8 +3,8 @@ package com.github.my.movie.tickets.discount;
 import com.github.my.movie.tickets.dto.Ticket;
 import com.github.my.movie.tickets.dto.TicketCart;
 import com.github.my.movie.tickets.enums.TicketType;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
 public class ChildrenTicketDiscountHandlerTest {
@@ -25,7 +25,7 @@ public class ChildrenTicketDiscountHandlerTest {
 
         childrenTicketDiscountHandler.applyDiscount(ticketCart);
         Ticket childrenTicket = ticketCart.getTickets().stream().filter(t -> TicketType.Children.equals(t.getTicketType())).findFirst().get();
-        Assert.assertEquals(36f, childrenTicket.getTotalCost(), 0.0f);
+        Assertions.assertEquals(36f, childrenTicket.getTotalCost(), 0.0f);
     }
 
     @Test
@@ -42,6 +42,6 @@ public class ChildrenTicketDiscountHandlerTest {
 
         childrenTicketDiscountHandler.applyDiscount(ticketCart);
         Ticket childrenTicket = ticketCart.getTickets().stream().filter(t -> TicketType.Children.equals(t.getTicketType())).findFirst().get();
-        Assert.assertEquals(40, childrenTicket.getTotalCost(), 0.0f);
+        Assertions.assertEquals(40, childrenTicket.getTotalCost(), 0.0f);
     }
 }

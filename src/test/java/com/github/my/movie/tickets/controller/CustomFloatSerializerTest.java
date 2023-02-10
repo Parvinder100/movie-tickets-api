@@ -1,7 +1,7 @@
 package com.github.my.movie.tickets.controller;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -24,6 +24,6 @@ public class CustomFloatSerializerTest {
     public void testSerialize() throws IOException {
         customFloatSerializer.serialize(2.0f, jsonGenerator, null);
         verify(jsonGenerator).writeNumber(formattedFloatString.capture());
-        Assert.assertEquals("2.00", formattedFloatString.getValue());
+        Assertions.assertEquals("2.00", formattedFloatString.getValue());
     }
 }
